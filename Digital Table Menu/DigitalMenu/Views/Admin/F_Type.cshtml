@@ -1,0 +1,92 @@
+﻿@model DigitalMenu.Models.Entity.tblFoodType
+
+@{
+    ViewBag.Title = "F_Type";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+<br /><br /><br />
+
+
+@using (Html.BeginForm("F_Type", "Admin", FormMethod.Post, new { id = "submitForm" })) 
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="form-horizontal">
+            <h2>Food Type</h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.FdId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FoodType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.FoodType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FoodType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+        <br />
+        <table id="exmTab" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Food Type</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Typ != null)
+                {
+                    foreach (var item in ViewBag.Typ)
+                    {
+                    <tr>
+                        <td>@item.FoodType</td>
+                        <td><a href="@Url.Action("EditType", new { id=item.FdId})"><img src="~/Content/Edit-Website.jpg" height="45" width="45" /></a></td>
+                        <td><a href="@Url.Action("DeleteType",new { id=item.FdId})" onclick="return confirm('Are you sure you want to delete Food Type?');"><img src="~/Content/delete.jpg" height="45" width="45" /></a></td>
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="Stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#exmTab").DataTable({});
+        });
+    </script>
+    <script>
+        $(function () {
+            var suces = '@TempData["TypeInSucess"]'
+            var update = '@TempData["TypeUpSucess"]'
+
+            if (suces != '')
+                toastr.success(suces);
+            else
+                if (update != '')
+                    toastr.info(update);
+        });
+    </script>
+}
+
+

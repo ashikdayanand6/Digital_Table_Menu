@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+<br /><br /><br />
+
+
+@using (Html.BeginForm("Menu", "User", FormMethod.Post, new { id = "submitForm" }))
+{
+    <div class="sam">
+        <h2>Menu</h2>
+        <hr />
+        <div class="row">
+            <div class="col-md-6 form-group">
+                @Html.Label("Select Food Type")
+                @Html.DropDownList("type", ViewBag.FT as SelectList, "--Select Type--", new { @class = "form-control" })
+                <br />
+                <div class="pull-right">
+                    <input type="submit" name="View" value="View" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+        <br />
+
+        @if (ViewBag.Res != null)
+        {
+            <div class="row text-center">
+                @foreach (var item in ViewBag.Res)
+                {
+                    <div class="col-md-3">
+                        <a href="@Url.Action("GetFdId", "User", new { id = item.FId })">
+                            @*@{ var base64 = Convert.ToBase64String(item.Image);
+                                var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                            }
+                            <img src='@imgsrc' style="width:185px; height:207px;" alt="img" class="img-responsive" />*@
+                            <img src="@Url.Content(item.Image)" width="220" height="200" />
+                        </a>
+                        <h5>@item.Name</h5>
+                        <div class="price">
+                            <h5 class="item_price">$@item.Price</h5>
+                            <a href="GetFdId/@item.FId" class="item_add" name="Book">Cart</a>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            var crt = '@TempData["AddCart"]'
+
+            if (crt != '')
+                toastr.success(crt);
+        });
+    </script>
+    }
+

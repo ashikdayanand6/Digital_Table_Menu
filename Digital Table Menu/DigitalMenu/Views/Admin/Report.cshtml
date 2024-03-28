@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+
+<br /><br /><br />
+
+<div class="sam">
+    <h2>Report</h2>
+    <hr />
+    <table id="exmTab" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Food</th>
+                <th>Name</th>
+                <th>Order date</th>
+                <th>Prepared</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Res != null)
+            {
+                foreach (var item in ViewBag.Res)
+                {
+                    <tr>
+                        <td><img src="@Url.Content(item.tblFood.Image)" width="50" height="50" /></td>
+                        <td>@item.tblFood.Name</td>
+                        <td>@item.OrderDate</td>
+                        <td>@item.DisDate</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.TotalPrice</td>
+                    </tr>
+                }
+            }
+        </tbody>
+        <tfoot>
+            @if (ViewBag.Tot != null)
+            {
+                <tr style="font-size:large;font-weight:bolder;background-color:#c1c1c1">
+                    <th colspan="5" style="text-align:right">Total </th>
+                    <td><strong id="totalTax"> Rs= @ViewBag.Tot</strong></td>
+                </tr>
+            }
+        </tfoot>
+    </table>
+</div>
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="Stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#exmTab").DataTable();
+        });
+    </script>    
+}
+
+

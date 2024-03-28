@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12734aad2748407ba64090c93aa57d13" Name="Diagram1">
+        <EntityTypeShape EntityType="DigitalMenuModel.tblAdmin" Width="1.5" PointX="7.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblAdminProduct" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblBook" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblCart" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblChef" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblChefProduct" Width="1.5" PointX="8" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblFood" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblFoodType" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblSeller" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitalMenuModel.tblUser" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblAdminProducts_tblSeller" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblBook_tblFood" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblBook_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblCart_tblFood" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblCart_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblChefProducts_tblChef" ManuallyRouted="false" />
+        <AssociationConnector Association="DigitalMenuModel.FK_tblFood_tblFoodType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

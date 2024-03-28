@@ -1,0 +1,168 @@
+﻿@model DigitalMenu.Models.Entity.tblAdminProduct
+
+@{
+    ViewBag.Title = "AdminProducts";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+<br /><br /><br />
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal sam">
+        <h2>Admin Products</h2>
+        <hr />
+        <div class="row">
+            <div class="col-md-5">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Select Seller", htmlAttributes: new { @class = "control-label col-md-10" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Sellr", ViewBag.Seller as List<SelectListItem>, "--Select Seller--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SelId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SelId, "SelId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("SelId", new SelectList(string.Empty, "Value", "Text"), "--Select--", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SelId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Products, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Products, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Products, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DeliverDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DeliverDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DeliverDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <table id="exmTab" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Seller</th>
+                            <th>Type</th>
+                            <th>Products</th>
+                            <th>Post Date</th>
+                            <th>Deliver Date</th>
+                            <th>Replay</th>
+                            <th>Replay Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Res != null)
+                        {
+                            foreach (var item in ViewBag.Res)
+                            {
+                                <tr>
+                                    <td>@item.tblSeller.SellerName</td>
+                                    <td>@item.tblSeller.Type</td>
+                                    <td>@item.Products</td>
+                                    <td>@item.PstDate</td>
+                                    <td>@item.DeliverDate</td>
+                                    <td>@item.Replay</td>
+                                    <td>@item.RpDate</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="Stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+<script>
+        $(document).ready(function () {
+            $("#exmTab").DataTable({lengthMenu:[[5,10,15,-1],[5,10,15,"all"]]});
+        });
+</script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#Sellr").change(function () {
+                $("#SelId").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetSeller")',
+
+                    dataType: 'json',
+
+                    data: { id: $("#Sellr").val() },
+
+
+                    success: function (Area) {
+
+
+                        $.each(Area, function (i, Area) {
+                            $("#SelId").append('<option value="' + Area.Value + '">' +
+                                 Area.Text + '</option>');
+
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve country states.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+
+        //$(document).ready(function () {
+        //    $("#Sellr").change(function () {
+        //        var cID = $("#Sellr").val();
+        //        var url = "/Admin/GetSeller";
+
+        //        $.getJSON(url, { id: cID }, function (data) {
+        //            var item = '<option value="">--Select--</option>';
+        //            $("#SelId").empty();
+        //            $.each(data, function (i, area) {
+        //                item += '<option value="' + area.value + '">' + area.text + '</option>'
+        //            });
+        //            $("#SelId").html(item);
+        //        });
+        //    });
+        //});
+
+        $(function () {
+            var insert = '@TempData["AdminProdIns"]'
+            if (insert != '')
+                toastr.success(insert);
+        });
+
+    </script>
+}
+

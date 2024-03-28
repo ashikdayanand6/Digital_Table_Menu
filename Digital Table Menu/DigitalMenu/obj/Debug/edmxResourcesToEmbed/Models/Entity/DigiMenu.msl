@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DigitalMenuModelStoreContainer" CdmEntityContainer="DigitalMenuEntities1">
+    <EntitySetMapping Name="tblAdmins">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblAdmin">
+        <MappingFragment StoreEntitySet="tblAdmin">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblAdminProducts">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblAdminProduct">
+        <MappingFragment StoreEntitySet="tblAdminProducts">
+          <ScalarProperty Name="AdPdId" ColumnName="AdPdId" />
+          <ScalarProperty Name="SelId" ColumnName="SelId" />
+          <ScalarProperty Name="Products" ColumnName="Products" />
+          <ScalarProperty Name="PstDate" ColumnName="PstDate" />
+          <ScalarProperty Name="DeliverDate" ColumnName="DeliverDate" />
+          <ScalarProperty Name="Replay" ColumnName="Replay" />
+          <ScalarProperty Name="RpDate" ColumnName="RpDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBooks">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblBook">
+        <MappingFragment StoreEntitySet="tblBook">
+          <ScalarProperty Name="BkId" ColumnName="BkId" />
+          <ScalarProperty Name="FId" ColumnName="FId" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="TableNo" ColumnName="TableNo" />
+          <ScalarProperty Name="DisDate" ColumnName="DisDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCarts">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblCart">
+        <MappingFragment StoreEntitySet="tblCart">
+          <ScalarProperty Name="CtId" ColumnName="CtId" />
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="FId" ColumnName="FId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblChefs">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblChef">
+        <MappingFragment StoreEntitySet="tblChef">
+          <ScalarProperty Name="ChId" ColumnName="ChId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblChefProducts">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblChefProduct">
+        <MappingFragment StoreEntitySet="tblChefProducts">
+          <ScalarProperty Name="ChPdId" ColumnName="ChPdId" />
+          <ScalarProperty Name="ChId" ColumnName="ChId" />
+          <ScalarProperty Name="Products" ColumnName="Products" />
+          <ScalarProperty Name="PstDate" ColumnName="PstDate" />
+          <ScalarProperty Name="Stataus" ColumnName="Stataus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFoods">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblFood">
+        <MappingFragment StoreEntitySet="tblFood">
+          <ScalarProperty Name="FId" ColumnName="FId" />
+          <ScalarProperty Name="FdId" ColumnName="FdId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFoodTypes">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblFoodType">
+        <MappingFragment StoreEntitySet="tblFoodType">
+          <ScalarProperty Name="FdId" ColumnName="FdId" />
+          <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSellers">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblSeller">
+        <MappingFragment StoreEntitySet="tblSeller">
+          <ScalarProperty Name="SelId" ColumnName="SelId" />
+          <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="DigitalMenuModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UsrId" ColumnName="UsrId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Menu</title>
+    <meta name="viewport" context="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="@Url.Content("~/Content/Admin/")css/bootstrap.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/Content/Admin/")css/style.css">
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="home">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+            <div class="container">
+                <a href="#" class="navbar-brand text-warning font-weight-bold">Digital Menu</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="ChefHome" class="nav-link text-white">Home</a></li>
+                        <li class="nav-item"><a href="ChefPrepFood" class="nav-link text-white">Prepare List</a></li>
+                        <li class="nav-item"><a href="ChefProducts" class="nav-link text-white">Products</a></li>
+                        <li class="nav-item"><a href="ChefProfile" class="nav-link text-white">Profile</a></li>
+                        <li class="nav-item"><a href="ChefPassword" class="nav-link text-white">Password</a></li>
+                        <li class="nav-item"><a href="@Url.Action("Logout","Chef")" class="nav-link text-white">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+    </div>
+    @RenderBody()
+
+    @*<footer class="navbar navbar-fixed-bottom footer">
+        <h5 class="text-center">Copyright at 2020</h5>
+    </footer>*@
+
+
+    <script src="@Url.Content("~/Content/Admin/")js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="@Url.Content("~/Content/Admin/")js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

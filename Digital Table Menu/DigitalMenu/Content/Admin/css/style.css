@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
+.bgimg{
+    background-image: url('../images/steudents.jpg');
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    width: 100%;
+    height: 660px;
+}
+.headerset{
+    padding-top: 250px;
+    box-sizing: border-box;
+}
+.headerset h2{
+    font-size: 43px;
+}
+.headerset h1{
+    font-size: 72px;
+    font-weight: bold;
+}
+
+/********************** Servicess **********************/
+.overservices{
+    padding: 60px 0px 40px;
+}
+.overservices h1{
+    font-size: 50px;
+    font-weight: bold;
+}
+.rowsetting{
+    margin: 80px 0px !important;
+}
+.imgsetting{
+    border-radius: 50px;
+    height: 100px;
+    widows: 100px;
+}
+.fa-shopping-cart{
+    margin-top: 25px;
+}
+.fa-desktop{
+    margin-top: 25px;
+}
+.fa-lock{
+    margin-top: 25px;
+}
+
+/***************** Portfolio ***************/
+.portfolio{
+    padding: 50px 0px 50px;
+}
+.portfolio h1{
+    font-size: 50px;
+    font-weight: bold;
+}
+.card{
+    margin-top: 20px;
+}
+
+/**************** Ourteam *********************/
+.ourteam{
+    padding: 50px 0px 50px;
+}
+
+/***************** Responsive **********************/
+@media(min-width: 992px){
+
+}
+@media(min-width: 768px) and (max-width: 991px){
+    
+}
+@media(min-width: 575px) and (max-width: 767px){
+    
+}
+@media(min-width: 480px) and (max-width: 574px){
+    .headerset h1{
+        font-size: 42px;
+        font-weight: bold;
+    }
+    .headerset h2{
+        font-size: 22px;
+    }
+}
+@media(max-width: 479px){
+    .headerset h2{
+        font-size: 22px;
+    }
+    .headerset h1{
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .ourservices{
+        height: 1200px;
+    }
+}
+
+
+/************************************* Practies *************************************/
+.cardheader{
+    background-color: blueviolet;
+    background-size: cover;
+    height: 95px;
+}
+.alex{
+    background-color: brown;
+    background-size: cover;
+    height: 70px;
+}
+.info{
+    background-color: burlywood;
+    background-size: cover;
+    height: 90px;
+}
+.opacity{
+    opacity: 0.5;
+}
+
+.footer {
+    background-color: #fbda53;
+    border-color: #ffda0f;
+    height: auto;
+    margin-top: 60px;
+    width: 100%;
+    text-align: left;
+    padding: 10px 10px 10px 10px;
+}
+
+.field-validaton-error{
+    color: red;
+}
+
+.input-validation-error{
+    border: 2px solid red;
+}

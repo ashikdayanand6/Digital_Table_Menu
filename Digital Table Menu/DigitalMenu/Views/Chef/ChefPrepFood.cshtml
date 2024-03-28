@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "ChefPrepFood";
+    Layout = "~/Views/Shared/_Chef.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+<br /><br /><br />
+
+@using (Html.BeginForm("ChefPrepFood", "Chef", FormMethod.Post, new { id = "submitForm" }))
+{
+<div class="sam">
+    <h2>Chef Prepare Food</h2>
+    <hr />
+    <table id="exmTab" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Table No</th>
+                <th>Food</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Res != null)
+            {
+                foreach (var item in ViewBag.Res)
+                {
+                    <tr>
+                        <td>@item.TableNo</td>
+                        <td><img src="@Url.Content(item.tblFood.Image)" width="50" height="50" /></td>
+                        <td>@item.tblFood.Name</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.OrderDate</td>
+                        <td><a href="@Url.Action("CherResult", "Chef", new { id = item.BkId })"><img src="~/Content/Edit-Website.jpg" height="45" width="45" />Action</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="Stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#exmTab").DataTable({lengthMenu:[[3,5,10,-1],[3,5,10,"all"]]});
+        });
+    </script>
+    @*<script>
+        $(function () {
+            var suces = '@TempData["InsertFood"]'
+            var update = '@TempData["UpdateFood"]'
+            var delte = '@TempData["DeleteFood"]'
+
+            if (suces != '')
+                toastr.success(suces);
+            else
+                if (update != '')
+                    toastr.info(update);
+                else
+                    if (delte != '')
+                        toastr.info(delte);
+        });
+    </script>*@
+}

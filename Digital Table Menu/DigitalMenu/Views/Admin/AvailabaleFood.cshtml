@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "AvailabaleFood";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+
+<br /><br /><br />
+
+@using (Html.BeginForm("AvailabaleFood", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="sam">
+    <h2>Availabale Food</h2>
+    <hr />
+    <table id="exmTab" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Food</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Res != null)
+            {
+                foreach (var item in ViewBag.Res)
+                {
+                    <tr>
+                        <td><img src="@Url.Content(item.Image)" width="50" height="50" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>@item.tblFoodType.FoodType</td>
+                        <td><a href="@Url.Action("AvailableFoodAction", "Admin", new { id = item.FId })"><img src="~/Content/Edit-Website.jpg" height="45" width="45" />Action</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+}
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="Stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#exmTab").DataTable();
+        });
+    </script>
+    <script>
+        $(function () {
+            var suces = '@TempData["FoodNt"]'
+
+            if (suces != '')
+                toastr.success(suces);
+        });
+    </script>
+}
+

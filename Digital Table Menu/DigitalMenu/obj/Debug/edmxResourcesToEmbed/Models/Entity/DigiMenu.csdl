@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DigitalMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAdmin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tblAdminProduct">
+    <Key>
+      <PropertyRef Name="AdPdId" />
+    </Key>
+    <Property Name="AdPdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SelId" Type="Int32" />
+    <Property Name="Products" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="PstDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeliverDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Replay" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="RpDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblSeller" Relationship="Self.FK_tblAdminProducts_tblSeller" FromRole="tblAdminProducts" ToRole="tblSeller" />
+  </EntityType>
+  <EntityType Name="tblBook">
+    <Key>
+      <PropertyRef Name="BkId" />
+    </Key>
+    <Property Name="BkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FId" Type="Int32" />
+    <Property Name="UsrId" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="OrderDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalPrice" Type="Int32" />
+    <Property Name="TableNo" Type="Int32" />
+    <Property Name="DisDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblFood" Relationship="Self.FK_tblBook_tblFood" FromRole="tblBook" ToRole="tblFood" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblBook_tblUser" FromRole="tblBook" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblCart">
+    <Key>
+      <PropertyRef Name="CtId" />
+    </Key>
+    <Property Name="CtId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsrId" Type="Int32" />
+    <Property Name="FId" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblFood" Relationship="Self.FK_tblCart_tblFood" FromRole="tblCart" ToRole="tblFood" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblCart_tblUser" FromRole="tblCart" ToRole="tblUser" />
+  </EntityType>
+  <EntityType Name="tblChef">
+    <Key>
+      <PropertyRef Name="ChId" />
+    </Key>
+    <Property Name="ChId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblChefProducts" Relationship="Self.FK_tblChefProducts_tblChef" FromRole="tblChef" ToRole="tblChefProducts" />
+  </EntityType>
+  <EntityType Name="tblChefProduct">
+    <Key>
+      <PropertyRef Name="ChPdId" />
+    </Key>
+    <Property Name="ChPdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChId" Type="Int32" />
+    <Property Name="Products" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="PstDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Stataus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblChef" Relationship="Self.FK_tblChefProducts_tblChef" FromRole="tblChefProducts" ToRole="tblChef" />
+  </EntityType>
+  <EntityType Name="tblFood">
+    <Key>
+      <PropertyRef Name="FId" />
+    </Key>
+    <Property Name="FId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FdId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblBooks" Relationship="Self.FK_tblBook_tblFood" FromRole="tblFood" ToRole="tblBook" />
+    <NavigationProperty Name="tblCarts" Relationship="Self.FK_tblCart_tblFood" FromRole="tblFood" ToRole="tblCart" />
+    <NavigationProperty Name="tblFoodType" Relationship="Self.FK_tblFood_tblFoodType" FromRole="tblFood" ToRole="tblFoodType" />
+  </EntityType>
+  <EntityType Name="tblFoodType">
+    <Key>
+      <PropertyRef Name="FdId" />
+    </Key>
+    <Property Name="FdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblFoods" Relationship="Self.FK_tblFood_tblFoodType" FromRole="tblFoodType" ToRole="tblFood" />
+  </EntityType>
+  <EntityType Name="tblSeller">
+    <Key>
+      <PropertyRef Name="SelId" />
+    </Key>
+    <Property Name="SelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblAdminProducts" Relationship="Self.FK_tblAdminProducts_tblSeller" FromRole="tblSeller" ToRole="tblAdminProducts" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UsrId" />
+    </Key>
+    <Property Name="UsrId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblBooks" Relationship="Self.FK_tblBook_tblUser" FromRole="tblUser" ToRole="tblBook" />
+    <NavigationProperty Name="tblCarts" Relationship="Self.FK_tblCart_tblUser" FromRole="tblUser" ToRole="tblCart" />
+  </EntityType>
+  <Association Name="FK_tblAdminProducts_tblSeller">
+    <End Role="tblSeller" Type="Self.tblSeller" Multiplicity="0..1" />
+    <End Role="tblAdminProducts" Type="Self.tblAdminProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSeller">
+        <PropertyRef Name="SelId" />
+      </Principal>
+      <Dependent Role="tblAdminProducts">
+        <PropertyRef Name="SelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBook_tblFood">
+    <End Role="tblFood" Type="Self.tblFood" Multiplicity="0..1" />
+    <End Role="tblBook" Type="Self.tblBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFood">
+        <PropertyRef Name="FId" />
+      </Principal>
+      <Dependent Role="tblBook">
+        <PropertyRef Name="FId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBook_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblBook" Type="Self.tblBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UsrId" />
+      </Principal>
+      <Dependent Role="tblBook">
+        <PropertyRef Name="UsrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCart_tblFood">
+    <End Role="tblFood" Type="Self.tblFood" Multiplicity="0..1" />
+    <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFood">
+        <PropertyRef Name="FId" />
+      </Principal>
+      <Dependent Role="tblCart">
+        <PropertyRef Name="FId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCart_tblUser">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblCart" Type="Self.tblCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UsrId" />
+      </Principal>
+      <Dependent Role="tblCart">
+        <PropertyRef Name="UsrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblChefProducts_tblChef">
+    <End Role="tblChef" Type="Self.tblChef" Multiplicity="0..1" />
+    <End Role="tblChefProducts" Type="Self.tblChefProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblChef">
+        <PropertyRef Name="ChId" />
+      </Principal>
+      <Dependent Role="tblChefProducts">
+        <PropertyRef Name="ChId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblFood_tblFoodType">
+    <End Role="tblFoodType" Type="Self.tblFoodType" Multiplicity="0..1" />
+    <End Role="tblFood" Type="Self.tblFood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFoodType">
+        <PropertyRef Name="FdId" />
+      </Principal>
+      <Dependent Role="tblFood">
+        <PropertyRef Name="FdId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DigitalMenuEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAdmins" EntityType="Self.tblAdmin" />
+    <EntitySet Name="tblAdminProducts" EntityType="Self.tblAdminProduct" />
+    <EntitySet Name="tblBooks" EntityType="Self.tblBook" />
+    <EntitySet Name="tblCarts" EntityType="Self.tblCart" />
+    <EntitySet Name="tblChefs" EntityType="Self.tblChef" />
+    <EntitySet Name="tblChefProducts" EntityType="Self.tblChefProduct" />
+    <EntitySet Name="tblFoods" EntityType="Self.tblFood" />
+    <EntitySet Name="tblFoodTypes" EntityType="Self.tblFoodType" />
+    <EntitySet Name="tblSellers" EntityType="Self.tblSeller" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK_tblAdminProducts_tblSeller" Association="Self.FK_tblAdminProducts_tblSeller">
+      <End Role="tblSeller" EntitySet="tblSellers" />
+      <End Role="tblAdminProducts" EntitySet="tblAdminProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBook_tblFood" Association="Self.FK_tblBook_tblFood">
+      <End Role="tblFood" EntitySet="tblFoods" />
+      <End Role="tblBook" EntitySet="tblBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBook_tblUser" Association="Self.FK_tblBook_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblBook" EntitySet="tblBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCart_tblFood" Association="Self.FK_tblCart_tblFood">
+      <End Role="tblFood" EntitySet="tblFoods" />
+      <End Role="tblCart" EntitySet="tblCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCart_tblUser" Association="Self.FK_tblCart_tblUser">
+      <End Role="tblUser" EntitySet="tblUsers" />
+      <End Role="tblCart" EntitySet="tblCarts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblChefProducts_tblChef" Association="Self.FK_tblChefProducts_tblChef">
+      <End Role="tblChef" EntitySet="tblChefs" />
+      <End Role="tblChefProducts" EntitySet="tblChefProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblFood_tblFoodType" Association="Self.FK_tblFood_tblFoodType">
+      <End Role="tblFoodType" EntitySet="tblFoodTypes" />
+      <End Role="tblFood" EntitySet="tblFoods" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

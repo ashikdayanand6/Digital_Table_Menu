@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_User.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+<br /><br /><br />
+
+@using (Html.BeginForm("Cart", "User", FormMethod.Post, new { id = "submitForm" }))
+{
+<div class="sam" style="width:100%">
+    <h2>Cart</h2>
+    <hr />
+    <table id="exmTab" class="table table-striped">
+        <thead>
+            <tr>
+               
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.FinRes != null)
+            {
+                foreach (var item in ViewBag.FinRes)
+                {
+                    <tr>
+                        
+                        <td><img src="@Url.Content(item.tblFood.Image)" width="70px" height="70px" /></td>
+                        <td>@item.tblFood.Name</td>
+                        <td>@item.tblFood.Price<input type="hidden" value="@item.tblFood.Price" name="txtPric" /></td>
+                        <td><input type="text" name="txtQt" width="70" required="" /> <input type="hidden" value="@item.tblFood.FId" id="hdnFlag" name="hdnFlag" /></td>
+                        <td><a href="@Url.Action("CancelCart",new { id=item.CtId, Fid=item.tblFood.FId })" );"><img src="~/Content/delete.jpg" height="45" width="45" /></a></td>
+                            @*@{ 
+                                var total = item.Price * Request.Form["txtQt"];
+                            }
+                            @total*@
+                        
+                    </tr>
+                }
+            }
+        </tbody>        
+        <tfoot>
+            @if (TempData["total"] != null)
+            {
+                <tr style="font-size:large;font-weight:bolder;background-color:#c1c1c1">
+                    <th colspan="2">Total </th>
+                    <td><strong id="totalTax"> Rs= @TempData["total"]</strong></td>
+                    
+                </tr>
+            }
+        </tfoot>
+    </table>
+    <br />
+    <div class="row">
+        <div class="col-md-1">
+            
+        </div>
+        <div class="col-md-1">
+            <b>Select Table</b>
+        </div>
+        <div class="col-md-4">
+            <select name="tabls" id="tabls" required="" class="form-control">
+                <option value="">--Select Table--</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <input type="submit" value="Submit" class="btn btn-info" />
+        </div>
+    </div>
+</div>
+}

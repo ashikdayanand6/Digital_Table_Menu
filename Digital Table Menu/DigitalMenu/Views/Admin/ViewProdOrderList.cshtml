@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "ViewProdOrderList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<style>
+    .sam {
+        margin: 20px;
+    }
+</style>
+<br /><br /><br />
+
+<div class="sam">
+    <h2>Products List</h2>
+    <hr />
+    <br />
+    <table id="exmTab" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Products</th>
+                <th>Posted Date</th>
+                <th>Deliver Date</th>
+                <th>Replay</th>
+                <th>Replay Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Res != null)
+            {
+                foreach (var item in ViewBag.Res)
+                {
+                    <tr>
+                        <td>@item.Products</td>
+                        <td>@item.PstDate</td>
+                        <td>@item.DeliverDate</td>
+                        <td>@item.Replay</td>
+                        <td>@item.RpDate</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="Stylesheet" />
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#exmTab").DataTable({});
+        });
+    </script>
+}
+
+
+
+
